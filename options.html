@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>时间脚印选项</title>
+    <link rel="stylesheet" href="css/options.css" />
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script src="scripts/options.js"></script>
+</head>
+<body>
+    <div class="mod-body-inner">
+        <header class="fe-opt-header">
+            <div class="bar">
+                <img src="images/icon_48.png" width="24">
+                <span class="text">时间脚印选项</span>
+            </div>
+        </header>
+        <section class="fe-opt-content">
+            <div class="right">
+                <div id="opt_start" class="selected">
+                    <ul class="no-list-style">
+                        <li>
+                            <fieldset>
+                                <legend>选项</legend>
+                                <input id="checkshowname" type="checkbox" checked="">
+                                <label for="checkshowname">显示自带备注网站名</label>
+                                <br>
+                                <input id="checkshowratio" type="checkbox" checked="">
+                                <label for="checkshowratio">显示时间占比</label>
+                                <br>
+                                <span style="margin-left:4px;">网址显示条数：</span>
+                                <select id="showsitenum">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15" selected="selected">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                            </fieldset>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="mod-btns">
+                        <button class="btn" id="btnsave" style="width:50px;">保存</button>
+                        <button id="btnclearhistory" class="btn" style="width:100px;">清除所有记录</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="fe-opt-footer"></footer>
+    </div>
+</body>
+</html>

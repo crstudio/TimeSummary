@@ -1,0 +1,96 @@
+body {
+    width: 272px;
+    font-family: "MS Sans Serif";
+}
+
+img {
+    width: 100%;
+}
+
+table {
+    margin: 0 10px;
+    border-collapse: collapse;
+}
+
+p {
+    color: #707278;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing:2px;
+}
+
+span {
+    cursor: default;
+}
+
+.trtitle {
+    border-bottom: 1px solid #c9d8e3;
+}
+
+.trblank {
+    display: block;
+    margin-top: 5px;
+}
+
+.trsitedata {
+    height: 23px;
+}
+
+.tdsite {
+    width: 166px;
+    font-size: 13px;
+}
+
+    .tdsite input {
+        height: 17px;
+        width: 120px;
+    }
+
+    .tdsite .spansitename {
+        display: inline-block;
+        width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.tdtime {
+    width: 50px;
+    font-size: 13px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.tdratio {
+    width: 50px;
+    font-size: 13px;
+}
+
+.imgupdatename, .imgupdatenamebtn {
+    width: 13px;
+    height: 13px;
+    margin-left: 8px;
+    cursor: pointer;
+    display: none;
+}
+
+.imgupdatenamebtn {
+    background-image: url(/images/editsitename.png);
+}
+
+.imgupdatename {
+    background-image: url(/images/update.png);
+}
+
+.hovertr {
+    background-color: #F0F0F0;
+}
+
+.trtitle span {
+    font-weight: bold;
+}
+
+.spantimeorder {
+    cursor: pointer;
+}
