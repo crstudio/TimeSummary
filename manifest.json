@@ -1,0 +1,21 @@
+﻿{
+  "background": {
+    "scripts": ["scripts/site.js","scripts/background.js" ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "description": "记录你使用Chrome时浏览各个网站的时间，The time summary of you use Chrome",
+  "icons": {
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "manifest_version": 2,
+  "name": "时间脚印",
+  "options_page": "options.html",
+  "permissions": [ "tabs", "activeTab" ],
+  "version": "2.0.1",
+  "offline_enabled": true,
+  "short_name":"TimeSummary"
+}
