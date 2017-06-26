@@ -58,8 +58,6 @@ span {
 .tdtime {
     width: 50px;
     font-size: 13px;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .tdratio {
@@ -93,4 +91,6 @@ span {
 
 .spantimeorder {
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
 }
