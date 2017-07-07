@@ -1,6 +1,7 @@
 body {
     width: 272px;
     font-family: "MS Sans Serif";
+    height: auto;
 }
 
 img {
@@ -12,12 +13,16 @@ table {
     border-collapse: collapse;
 }
 
-p {
+.titlediv {
     color: #707278;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    letter-spacing:2px;
+    letter-spacing: 2px;
+    display: inline-block;
+    width: 120px;
+    flex: 1;
+    height: 26px;
 }
 
 span {
@@ -49,17 +54,15 @@ span {
 
     .tdsite .spansitename {
         display: inline-block;
-        width: 120px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor:pointer;
     }
 
 .tdtime {
     width: 50px;
     font-size: 13px;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .tdratio {
@@ -73,6 +76,8 @@ span {
     margin-left: 8px;
     cursor: pointer;
     display: none;
+    float:right;
+    margin-right:10px;
 }
 
 .imgupdatenamebtn {
@@ -81,6 +86,7 @@ span {
 
 .imgupdatename {
     background-image: url(/images/update.png);
+    display: inline-block;
 }
 
 .hovertr {
@@ -91,6 +97,41 @@ span {
     font-weight: bold;
 }
 
-.spantimeorder {
+.spantimeorder, .spanratioorder {
     cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.switchbtn {
+    width: 36px;
+    height: 18px;
+    background-color: #c9d8e3;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5px;
+    right: 9px;
+}
+
+.switchbtnfont {
+    height: 18px;
+    line-height: 18px;
+    display: block;
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+}
+
+    .switchbtnfont, .switchbtnfont span {
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+.switchchecked {
+    color: red;
+}
+
+.editspan {
+    display: none;
 }
