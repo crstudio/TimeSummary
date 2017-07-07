@@ -1,17 +1,23 @@
 ﻿<html>
 <head>
-    <link rel="stylesheet" href="css/popup.css" />
-    <script type="text/javascript" src="scripts/jquery.js"></script>
-    <script type="text/javascript" src="scripts/site.js"></script>
-    <script type="text/javascript" src="scripts/popup.js"></script>
+    <link rel="stylesheet" href="css/popup.css?t=2017070701" />
+    <script type="text/javascript" src="scripts/jquery.js?t=2017070701"></script>
+    <script type="text/javascript" src="scripts/site.js?t=2017070701"></script>
+    <script type="text/javascript" src="scripts/common.js?t=2017070701"></script>
+    <script type="text/javascript" src="scripts/popup.js?t=2017070701"></script>
 </head>
 <body>
-    <p>时间脚印</p>
+    <div style="display:flex;height:26px; position:relative; ">
+        <span class="titlediv">时间脚印</span>
+        <span class="switchbtn">
+            <span id="switchbtnfont" class="switchbtnfont" title="查看今天数据"><span id="switchtoday" class="switchchecked">今</span>/<span id="switchtotal">总</span></span>
+        </span>
+    </div>
     <table id="divDataInfo">
         <tr class="trtitle">
             <td class="tdsite"><div>网站</div></td>
             <td class="tdtime"><div id="timeorder" class="spantimeorder">时间</div></td>
-            <td class="tdratio"><div>占比</div></td>
+            <td class="tdratio"><div id="ratioorder" class="spanratioorder">占比</div></td>
         </tr>
         <tr class="trblank"></tr>
     </table>
