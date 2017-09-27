@@ -121,3 +121,59 @@ hr {
         .mod-btns .btn:hover {
             color: #b00;
         }
+
+.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+    width: 454px;
+    table-layout: fixed;
+}
+
+    .gridtable tr {
+        line-height: 15px;
+    }
+
+    .gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+        line-height: 15px;
+    }
+
+    .gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .gridtable .sitename {
+        width: 136px;
+    }
+
+    .gridtable .defaultname {
+        width: 107px;
+    }
+
+    .gridtable .savebtn {
+        padding: 4px;
+    }
+
+    .gridtable .custominput {
+        width: 104px;
+        border: none;
+    }
+
+button {
+    cursor: pointer;
+}

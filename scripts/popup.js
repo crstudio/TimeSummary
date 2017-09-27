@@ -14,20 +14,25 @@ $(function () {
         timeOrder = !timeOrder;
         setHtml();
     });
-    $(".switchbtn").click(function () {
-        if (timeType == 1) {
-            timeType = 0;
-            $("#switchtoday").removeClass("switchchecked");
-            $("#switchtotal").addClass("switchchecked");
-            $("#switchbtnfont").attr("title", "查看总数据");
+    $(".switchbtn").on({
+        "click": function () {
+            if (timeType == 1) {
+                timeType = 0;
+                $($(this).children().get(0)).animate({ left: '-28px' }, 'normal');
+                $($(this).children().get(1)).animate({ left: '0' }, 'normal');
+            } else {
+                timeType = 1;
+                $($(this).children().get(1)).animate({ left: '28px' }, 'normal');
+                $($(this).children().get(0)).animate({ left: '0' }, 'normal');
+            }
+            setHtml();
+        },
+        "mouseover": function () {
+            $(".switchbtnfont").css("background-color", "#c9d8e3");
+        },
+        "mouseout": function () {
+            $(".switchbtnfont").css("background-color", "#B0C4DE");
         }
-        else {
-            timeType = 1;
-            $("#switchtotal").removeClass("switchchecked");
-            $("#switchtoday").addClass("switchchecked");
-            $("#switchbtnfont").attr("title", "查看今天数据");
-        }
-        setHtml();
     });
 });
 //从localStorage中读取数据
@@ -59,18 +64,16 @@ function getDataFromStorage() {
 }
 //展示界面
 function setHtml() {
-    var isnewtab = localStorage.getItem("tsnewtabcheck");
+    let datainfoid = timeType == 1 ? "divperdaydatainfo" : "divtotaldatainfo";
     var showSiteNum = localStorage.getItem("TMshowsitenum");
-    var htmlDataInfo = "";
-    var sitename = "";
-    var sitedomain = "";
-    var timeofsite = "";
-    var siteLength = 0;
-    var ratio = 0;
-    var ratioHtml = "";
-
-    var isShowRatio = localStorage.getItem("showratio");
-    var isShowDefaultName = localStorage.getItem("showdefaultname");
+    let sitename = "";      //显示的网站名
+    let sitedomain = "";        //显示的域名
+    let timeofsite = "";        //显示的时间
+    let siteCount = 0;     //显示条数
+    let ratio = 0;
+    let ratioHtml = "";
+    let isShowRatio = localStorage.getItem("showratio");
+    let dataInfoHtml = "";
     if (isShowRatio != "0") {
         if (timeType == 0) {
             totalTime = localStorage.getItem("tstotaltime");
@@ -78,38 +81,33 @@ function setHtml() {
             totalTime = localStorage.getItem("tstotaltime_today");
         }
     } else {
-        $(".tdratio").hide();
+        $(".spanratio").hide();
         $("body").css("width", "240px");
     }
-    $(".trsitedata").remove();  //先清空
     getDataFromStorage();
-
     if (timeJson.length == 0) {
-        $("#divDataInfo").html("您还没有访问过任何网站！");
+        $("#divtitle").hide();
+        $("#" + datainfoid).html("您还没有访问过任何网站！").show();
         return;
+    } else {
+        $("#divtitle").show();
     }
-
     if (showSiteNum == null || showSiteNum == 0) {
         showSiteNum = 15;
         localStorage.setItem("TMshowsitenum", "15");
     }
-    if (showSiteNum < timeJson.length) {
-        siteLength = showSiteNum;
-    }
-    else {
-        siteLength = timeJson.length;
-    }
-    for (var i = 0; i < siteLength; i++) {
+    siteCount = showSiteNum < timeJson.length ? showSiteNum : timeJson.length;
+    for (var i = 0; i < siteCount; i++) {
         timeofsite = secondToCommonTime(timeJson[i].timevalue);
         if (isShowRatio != "0") {
             ratio = Math.round(timeJson[i].timevalue / totalTime * 1000) / 10.0;
-            ratioHtml = "<td class='tdratio'><span>" + ratio + "%</span></td>";
+            ratioHtml = "<span class='spanratio'>" + ratio + "%</span>";
         }
         sitedomain = timeJson[i].sitedomain;
         if (jsonCustomerSiteName.hasOwnProperty(sitedomain) && jsonCustomerSiteName[sitedomain].sitename != "") {   //如果重命名过，则显示重命名
             sitename = jsonCustomerSiteName[sitedomain].sitename;
-        } else if (isShowDefaultName != "0") { //显示默认网站名
-            if (sitejson[sitedomain] != undefined) { //如果sitejson中包含了该网址，则显示sitejson中的名称
+        } else if (localStorage.getItem("showdefaultname") != "0") {        //显示提供的默认网站名
+            if (sitejson[sitedomain] != undefined) {        //如果sitejson中包含了该网址，则显示sitejson中的名称
                 sitename = sitejson[sitedomain];
             } else {
                 var isHadReapeatSite = false;
@@ -127,45 +125,18 @@ function setHtml() {
         } else {
             sitename = timeJson[i].sitedomain;
         }
-        htmlDataInfo += "<tr class='trsitedata'><td class='tdsite'><span class='showname'><span class='spansitename' title='" + sitedomain + "'>" + sitename + "</span><span class='imgupdatenamebtn' title='修改备注' ></span></span><span class='editspan'><input class='inputsitename' value='" + sitename + "' /><span class='imgupdatename' title='确定修改' ></span></span></td><td class='tdtime'><span>" + timeofsite + "</span></td>" + ratioHtml + "</tr>";
+        dataInfoHtml += "<li><span class='spanname'><span class='spansitename' title='" + sitedomain + "'>" + sitename + "</span><span class='imgupdatenamebtn' title='修改备注' ></span></span><span class='editspan'><input class='inputsitename' value='" + sitename + "' /><span class='imgupdatename' title='确定修改' ></span></span><span class='spantime'>" + timeofsite + "</span>" + ratioHtml + "</li>";
     }
-    $("#divDataInfo").append(htmlDataInfo);
-    //网站名称每一行
-    $(".trsitedata").bind({
-        "mouseover": function () {
-            $(this).addClass("hovertr");
-            if ($(this).find(".imgupdatename").is(":hidden")) {
-                $(this).find(".imgupdatenamebtn").css("display", "inline-block");
-            }
-        },
-        "mouseout": function () {
-            $(this).removeClass("hovertr");
-            $(this).find(".imgupdatenamebtn").hide();
-        }
-    });
-    //修改按钮
-    $(".imgupdatenamebtn").bind({
-        "click": function () {
-            event.stopPropagation();
-            event.preventDefault();
-            $(".spansitename").show();  //其他行的网站名称显示
-            $(this).parent().hide();        //网站名（class='showname'）隐藏
-            $(this).parent().siblings(".editspan").show();      //修改网站（class='editspan'）名显示
-        }
-    });
-    //确定修改按钮
-    $(".imgupdatename").bind({
-        "click": function () {
-            if ($(this).parent().prev().children('.spansitename').attr("title") != "") {
-                updateSiteName($(this).parent().prev().children('.spansitename').attr("title"), $(this).prev().val());
-
-            } else {
-                updateSiteName($(this).parent().prev().children('.spansitename').html(), $(this).prev().val());
-            }
-        }
-    });
+    $("#" + datainfoid).html(dataInfoHtml);
+    if (timeType == 1) {
+        $("#divperdaydatainfo").animate({ left: '0' }, 'normal');
+        $("#divtotaldatainfo").animate({ left: '300px' }, 'normal');
+    } else {
+        $("#divperdaydatainfo").animate({ left: '-300px' }, 'normal');
+        $("#divtotaldatainfo").animate({ left: '0' }, 'normal');
+    } 
     //点击网站名直接访问网站
-    if (isnewtab == 1) {
+    if (localStorage.getItem("tsnewtabcheck") == 1) {
         $(".spansitename").bind({
             "click": function () {
                 openNewTab("http://" + $(this).attr("title"));
@@ -182,16 +153,6 @@ function secondToCommonTime(s) {
     } else {
         return Math.ceil(s / 3600) + "h";
     }
-}
-//更新自定义网站名
-function updateSiteName(sitedomain, sitename) {
-    if (jsonCustomerSiteName.hasOwnProperty(sitedomain)) {
-        jsonCustomerSiteName[sitedomain].sitename = sitename;
-    } else {
-        jsonCustomerSiteName[sitedomain] = { "sitename": sitename, "show": "1" };
-    }
-    localStorage.setItem("timesummaryCSN", JSON.stringify(jsonCustomerSiteName));
-    setHtml();
 }
 //监听事件
 chrome.extension.onRequest.addListener(

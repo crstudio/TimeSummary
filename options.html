@@ -2,9 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>时间脚印选项</title>
-    <link rel="stylesheet" href="css/options.css?t=2017070701" />
+    <title>时间脚印配置项</title>
+    <link rel="stylesheet" href="css/options.css?t=2017070702" />
     <script type="text/javascript" src="scripts/jquery.js?t=2017070701"></script>
+    <script type="text/javascript" src="scripts/site.js?t=2017070701"></script>
+    <script type="text/javascript" src="scripts/common.js?t=2017070701"></script>
     <script src="scripts/options.js?t=2017070701"></script>
 </head>
 <body>
@@ -12,7 +14,7 @@
         <header class="fe-opt-header">
             <div class="bar">
                 <img src="images/icon_48.png" width="24">
-                <span class="text">时间脚印选项</span>
+                <span class="text">时间脚配置项</span>
             </div>
         </header>
         <section class="fe-opt-content">
@@ -28,8 +30,8 @@
                                 <input id="checkshowratio" type="checkbox" checked="">
                                 <label for="checkshowratio">显示时间占比</label>
                                 <br>
-                                <input id="checknewtab" type="checkbox">
-                                <label for="checknewtab">点击网站名直接访问网站<span style="color:red">（实验室）</span></label>
+                                <input id="checknewtab" type="checkbox" checked="">
+                                <label for="checknewtab">点击网站名直接访问网站</label>
                                 <br>
                                 <span style="margin-left:4px;">网址显示条数：</span>
                                 <select id="showsitenum">
@@ -39,14 +41,26 @@
                                     <option value="20">20</option>
                                     <option value="25">25</option>
                                 </select>
+                                <div class="mod-btns">
+                                    <button class="btn" id="btnsave" style="width:50px;">保存</button>
+                                    <button id="btnclearhistory" class="btn" style="width:100px;">清除所有记录</button>
+                                </div>
+                            </fieldset>
+                        </li>  
+                        <li>
+                            <fieldset>
+                                <legend>网站列表</legend>
+                                <table class="gridtable" id="sitelist">
+                                    <tr>
+                                        <th class="sitename">网址</th>
+                                        <th class="defaultname">默认网站名</th>
+                                        <th class="defaultname">自定义网站名</th>
+                                        <th class="savebtn"></th>
+                                    </tr> 
+                                </table> 
                             </fieldset>
                         </li>
-                    </ul>
-                    <hr>
-                    <div class="mod-btns">
-                        <button class="btn" id="btnsave" style="width:50px;">保存</button>
-                        <button id="btnclearhistory" class="btn" style="width:100px;">清除所有记录</button>
-                    </div>
+                    </ul> 
                 </div>
             </div>
         </section>

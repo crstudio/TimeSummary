@@ -1,16 +1,26 @@
 body {
-    width: 272px;
+    width: 280px;
     font-family: "MS Sans Serif";
     height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 5px 10px 5px;
+    font-size: 13px;
+}
+
+li {
+    list-style-type: none;
+    height: 22px;
+    position: relative;
+    line-height: 22px;
 }
 
 img {
     width: 100%;
-}
-
-table {
-    margin: 0 10px;
-    border-collapse: collapse;
 }
 
 .titlediv {
@@ -27,48 +37,21 @@ table {
 
 span {
     cursor: default;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
 }
 
-.trtitle {
-    border-bottom: 1px solid #c9d8e3;
+.spansitename {
+    display: inline-block;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    max-width: 120px;
+    float: left;
 }
 
-.trblank {
-    display: block;
-    margin-top: 5px;
-}
-
-.trsitedata {
-    height: 23px;
-}
-
-.tdsite {
-    width: 166px;
-    font-size: 13px;
-}
-
-    .tdsite input {
-        height: 17px;
-        width: 120px;
-    }
-
-    .tdsite .spansitename {
-        display: inline-block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        cursor:pointer;
-    }
-
-.tdtime {
-    width: 50px;
-    font-size: 13px;
-}
-
-.tdratio {
-    width: 50px;
-    font-size: 13px;
-}
 
 .imgupdatename, .imgupdatenamebtn {
     width: 13px;
@@ -76,8 +59,8 @@ span {
     margin-left: 8px;
     cursor: pointer;
     display: none;
-    float:right;
-    margin-right:10px;
+    float: right;
+    margin-right: 10px;
 }
 
 .imgupdatenamebtn {
@@ -93,45 +76,56 @@ span {
     background-color: #F0F0F0;
 }
 
-.trtitle span {
-    font-weight: bold;
-}
-
-.spantimeorder, .spanratioorder {
+.switchbtn {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    bottom: 5px;
+    right: 9px;
+    display: inline-block;
+    overflow: hidden;
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
 }
 
-.switchbtn {
-    width: 36px;
-    height: 18px;
-    background-color: #c9d8e3;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 5px;
-    right: 9px;
-}
-
 .switchbtnfont {
+    position: absolute;
+    width: 18px;
     height: 18px;
     line-height: 18px;
-    display: block;
-    color: #FFF;
+    color: #ffffff;
     text-align: center;
     font-size: 12px;
-}
-
-    .switchbtnfont, .switchbtnfont span {
-        cursor: pointer;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-
-.switchchecked {
-    color: red;
+    display: inline;
+    background-color: #B0C4DE;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 2px;
 }
 
 .editspan {
     display: none;
 }
+
+.spanname {
+    width: 150px;
+    float: left;
+}
+
+.spantime {
+    width: 50px;
+}
+
+.spanratio {
+    width: 50px;
+}
+
+.lititle {
+    height: 24px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid #B0C4DE;
+}
+
