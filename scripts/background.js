@@ -47,6 +47,9 @@ window.setInterval(function () {    //获取当前路径
             addTimeToSite(sitedomain);
         }
     });
+    if (getTimeStr() == localStorage.getItem("tstopmsg") + ":00") {
+        notifyMe();
+    }
 }, 1000);
 
 function addTimeToSite(sitedomain) {
@@ -76,10 +79,10 @@ function addTimeToSite(sitedomain) {
         var arr = { "sitedomain": sitedomain, "timevalue": 1 }
         timeJsonToday.site.push(arr);
     }
-     
-        localStorage.setItem("timesummary", JSON.stringify(timeJson));
-        localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
-   
+
+    localStorage.setItem("timesummary", JSON.stringify(timeJson));
+    localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
+
     isAdded = false;
     isAddedToday = false;
 }
@@ -122,15 +125,15 @@ function isSiteUrl(url) {
 }
 //监听消息
 chrome.extension.onRequest.addListener(
-  function (request, sender, sendResponse) {
-      if (request.greeting == "clearhistory") { //清空历史消息
-          timeJson = [];
-          timeJsonToday = {};
-          totalTime = 0;
-          totalTimeToday = 0; 
-          getDataFromStorage();
-      }
-  });
+    function (request, sender, sendResponse) {
+        if (request.greeting == "clearhistory") { //清空历史消息
+            timeJson = [];
+            timeJsonToday = {};
+            totalTime = 0;
+            totalTimeToday = 0;
+            getDataFromStorage();
+        }
+    });
 function getSingleUrl(stieurl) {
     var singleUrl = stieurl;
     for (var i = 0; i < repeatSiteUrl.length; i++) {
@@ -140,5 +143,27 @@ function getSingleUrl(stieurl) {
         }
     }
     return singleUrl;
+}
+//排行提醒
+function notifyMe() {
+    if (!Notification) {
+        alert('Desktop notifications not available in your browser. Try Chromium.');
+        return;
+    }
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    } else {
+        var timeJsonTodayTemp = jsonSort(timeJsonToday.site, 'timevalue', true);
+        var top1 = getSiteName(timeJsonTodayTemp[0].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[0].timevalue);
+        var top2 = getSiteName(timeJsonTodayTemp[1].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[1].timevalue);
+        var top3 = getSiteName(timeJsonTodayTemp[2].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[2].timevalue);
+        var topnotify = chrome.notifications.create(null, {
+            type: 'list',
+            iconUrl: 'images/icon_128.png',
+            title: '时间脚印-今日浏览排行',
+            message: "",
+            items: [{ title: "Top1：", message: top1 }, { title: "Top2：", message: top2 }, { title: "Top3：", message: top3 }]
+        });
+    }
 }
 

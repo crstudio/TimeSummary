@@ -19,6 +19,18 @@ $(function () {
     else {
         localStorage.setItem("tsnewtabcheck", "1");
     }
+    if (localStorage.getItem("tstopmsg") == "-1") {         //排行榜消息提醒时间
+        $("#checktopmsg").attr("checked", false);
+        $("#topmsgtimepicker").hide();
+    } else if (localStorage.getItem("tstopmsg") == "") {
+        localStorage.setItem("tstopmsg", "17:30");
+        $("#topmsgtime").val("17:30");
+        $("#topmsgtimepicker").show();
+    }
+    else {
+        $("#topmsgtime").val(localStorage.getItem("tstopmsg"));
+        $("#topmsgtimepicker").show();
+    }
     //显示条数
     var showNum = localStorage.getItem("TMshowsitenum");
     showNum = showNum == null ? "15" : showNum;
@@ -26,6 +38,14 @@ $(function () {
     csnTemp = localStorage.getItem("timesummaryCSN");
     jsonCustomerSiteName = csnTemp == null || csnTemp == "" ? {} : JSON.parse(csnTemp);
     setSiteList();
+
+    $("#checktopmsg").change(function () {
+        if ($("#checktopmsg").is(':checked')) {
+            $("#topmsgtimepicker").show();
+        } else {
+            $("#topmsgtimepicker").hide();
+        }
+    });
 });
 
 function setSiteList() {
@@ -79,6 +99,12 @@ function saveOptions() {
         localStorage.setItem("tsnewtabcheck", "1");
     } else {
         localStorage.setItem("tsnewtabcheck", "0");
+    }
+
+    if ($("#checktopmsg").is(':checked')) {      //排行榜消息提醒时间
+        localStorage.setItem("tstopmsg", $("#topmsgtime").val());
+    } else {
+        localStorage.setItem("tstopmsg", "-1");
     }
 
     chrome.extension.sendRequest({ greeting: "updatenum" }, function (response) {

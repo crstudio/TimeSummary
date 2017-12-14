@@ -1,6 +1,6 @@
 ﻿{
   "background": {
-    "scripts": ["scripts/site.js","scripts/common.js","scripts/background.js" ],
+    "scripts": [ "scripts/site.js", "scripts/common.js", "scripts/background.js" ],
     "persistent": true
   },
   "browser_action": {
@@ -14,8 +14,8 @@
   "manifest_version": 2,
   "name": "时间脚印",
   "options_page": "options.html",
-  "permissions": [ "tabs", "activeTab" ],
-  "version": "3.0.1",
+  "permissions": [ "tabs", "activeTab", "notifications" ],
+  "version": "3.0.2",
   "offline_enabled": true,
-  "short_name":"TimeSummary"
+  "short_name": "TimeSummary"
 }
