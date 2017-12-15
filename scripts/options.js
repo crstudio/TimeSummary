@@ -19,13 +19,9 @@ $(function () {
     else {
         localStorage.setItem("tsnewtabcheck", "1");
     }
-    if (localStorage.getItem("tstopmsg") == "-1") {         //排行榜消息提醒时间
+    if (localStorage.getItem("tstopmsg") == "-1" || localStorage.getItem("tstopmsg") == "" || localStorage.getItem("tstopmsg") == null) {         //排行榜消息提醒时间
         $("#checktopmsg").attr("checked", false);
         $("#topmsgtimepicker").hide();
-    } else if (localStorage.getItem("tstopmsg") == "") {
-        localStorage.setItem("tstopmsg", "17:30");
-        $("#topmsgtime").val("17:30");
-        $("#topmsgtimepicker").show();
     }
     else {
         $("#topmsgtime").val(localStorage.getItem("tstopmsg"));

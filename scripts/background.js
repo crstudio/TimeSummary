@@ -47,7 +47,7 @@ window.setInterval(function () {    //获取当前路径
             addTimeToSite(sitedomain);
         }
     });
-    if (getTimeStr() == localStorage.getItem("tstopmsg") + ":00") {
+    if (localStorage.getItem("tstopmsg") != null && localStorage.getItem("tstopmsg") != "" && getTimeStr() == localStorage.getItem("tstopmsg") + ":00") {
         notifyMe();
     }
 }, 1000);
