@@ -1,24 +1,64 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
 <head>
-    <link rel="stylesheet" href="css/popup.css?t=2017070701" />
-    <script type="text/javascript" src="scripts/jquery.js?t=2017070701"></script>
-    <script type="text/javascript" src="scripts/site.js?t=2017070701"></script>
-    <script type="text/javascript" src="scripts/common.js?t=2017070701"></script>
-    <script type="text/javascript" src="scripts/popup.js?t=2017070701"></script>
+    <title>时间脚印</title>
+    <link rel="stylesheet" href="css/popup.css?t=2018062201" />
+    <script type="text/javascript" src="scripts/jquery.js?t=2018062201"></script>
+    <script type="text/javascript" src="scripts/popup.js?t=2018062201"></script>
 </head>
+
 <body>
-    <div style="display:flex;height:26px; position:relative;margin-top:7px; ">
-        <span class="titlediv">时间脚印</span>
-        <span class="switchbtn">
-            <span style="left:0;" class="switchbtnfont" title="点击切换到总数据">今</span><span style="right:-20px;" class="switchbtnfont" title="点击切换到今天数据">总</span>
-        </span>
+    <div class="title">
+        <span>时间脚印</span>
     </div>
-    <div id="divDataInfo" style="position:relative;">
-        <ul id="uldatainfo" style="position:absolute;">
-            <div id="divtitle"><li class="lititle"><span class="spanname">网站</span><span class="spantime">时间</span><span class="spanratio">占比</span></li></div>
-            <div id="divperdaydatainfo" style="position:absolute;float:left;width:250px;"></div>
-            <div id="divtotaldatainfo" style="position:absolute;left:300px;float:left;width:250px;"></div>
+    <div class="columnname">
+        <ul>
+            <li class="sitecolumn">网站</li>
+            <li class="timecolumn">时间</li>
+            <li class="ratiocolumn">占比</li>
         </ul>
-    </div> 
+    </div>
+    <div id="detail">
+        <div id="detailleft">
+            <ul>
+                <li class="sitecolumn">360doc个人图书馆</li>
+                <li class="timecolumn">200h</li>
+                <li class="ratiocolumn">10%</li>
+            </ul>
+            <ul>
+                <li class="sitecolumn">百度</li>
+                <li class="timecolumn">100%</li>
+                <li class="ratiocolumn">9s</li>
+            </ul>
+            <ul>
+                <li class="sitecolumn">去哪儿网</li>
+                <li class="timecolumn">88m</li>
+                <li class="ratiocolumn">99%</li>
+            </ul>
+        </div>
+        <div id="detailright">
+            <ul>
+                <li class="sitecolumn">1360doc个人图书馆</li>
+                <li class="timecolumn">2100h</li>
+                <li class="ratiocolumn">110%</li>
+            </ul>
+            <ul>
+                <li class="sitecolumn">百1度</li>
+                <li class="timecolumn">1010%</li>
+                <li class="ratiocolumn">19s</li>
+            </ul>
+            <ul>
+                <li class="sitecolumn">去1哪儿网</li>
+                <li class="timecolumn">881m</li>
+                <li class="ratiocolumn">991%</li>
+            </ul>
+        </div>
+    </div>
+    <div class="operate">
+        <div id="switchDetailType" >总/今</div>
+        <div id="settingbtn">设置</div>
+    </div>
 </body>
+
 </html>
