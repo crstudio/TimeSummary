@@ -4,6 +4,12 @@ $(function () {
             popup.switchDetailType();
         }
     });
+    $("#settingbtn").on({
+        "click": function () {
+            chrome.runtime.openOptionsPage();
+        }
+    });
+    
 });
 
 var popup = {
@@ -16,3 +22,4 @@ var popup = {
     },
 
 }
+

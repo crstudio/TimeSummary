@@ -41,7 +41,7 @@ body {
 
 .columnname ul,
 #detail ul,
-.operate  {
+.operate {
     display: flex;
     padding: 0 15px;
 }
@@ -93,18 +93,179 @@ body {
 }
 
 .operate {
-    margin: 0 0 1.5rem;
+    border-top: 0.06rem dashed #e9e9e9;
     flex-flow: row wrap;
+    margin-top: 0.3rem;
 }
 
 #switchDetailType {
-    flex: 1;
+    flex: 0 0 auto;
     width: auto;
+    text-align: left;
+    height: 1.8rem;
+    line-height: 1.8rem;
     cursor: pointer;
 }
 
-#settingbtn {
+.filltemp {
     flex: 1;
-    text-align: right;
-    width: auto;
+}
+
+#settingbtn {
+    flex: 0 0 auto;
+    width: 45px;
+    cursor: pointer;
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+
+.settingimg:hover {
+    fill: #ff0000;
+}
+
+.octicon {
+    vertical-align: text-bottom;
+    display: inline-block;
+    fill: currentColor;
+}
+
+.x-settings {
+    float: right;
+    cursor: pointer
+}
+
+.x-settings:hover {
+    color: #a00
+}
+
+.tgl {
+    display: none;
+}
+
+.tgl,
+.tgl:after,
+.tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl+.tgl-btn {
+    box-sizing: border-box;
+}
+
+.tgl::-moz-selection,
+.tgl:after::-moz-selection,
+.tgl:before::-moz-selection,
+.tgl *::-moz-selection,
+.tgl *:after::-moz-selection,
+.tgl *:before::-moz-selection,
+.tgl+.tgl-btn::-moz-selection {
+    background: none;
+}
+
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl+.tgl-btn::selection {
+    background: none;
+}
+
+.tgl+.tgl-btn {
+    outline: 0;
+    display: block;
+    width: 1.5rem;
+    height: 0.8rem;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tgl+.tgl-btn:after,
+.tgl+.tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+
+.tgl+.tgl-btn:after {
+    left: 0;
+}
+
+.tgl+.tgl-btn:before {
+    display: none;
+}
+
+.tgl:checked+.tgl-btn:after {
+    left: 50%;
+}
+.tgl-btn {
+    margin-top: 0.4rem;
+ }
+.tgl-flip+.tgl-btn { 
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    font-family: sans-serif;
+    -webkit-perspective: 100px;
+    perspective: 100px;
+}
+
+.tgl-flip+.tgl-btn:after,
+.tgl-flip+.tgl-btn:before {
+    display: inline-block;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    height: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+    color: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 3px;
+}
+
+.tgl-flip+.tgl-btn:after {
+    content: attr(data-tg-on);
+    background: rgb(212, 212, 212);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+ 
+.tgl-flip+.tgl-btn:before { 
+    content: attr(data-tg-off);
+    background: rgb(212, 212, 212);
+}
+
+.tgl-flip+.tgl-btn:active:before {
+    -webkit-transform: rotateY(-20deg);
+    transform: rotateY(-20deg);
+}
+
+.tgl-flip:checked+.tgl-btn:before {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.tgl-flip:checked+.tgl-btn:after {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+    left: 0;
+    background: #7FC6A6;
+}
+
+.tgl-flip:checked+.tgl-btn:active:after {
+    -webkit-transform: rotateY(20deg);
+    transform: rotateY(20deg);
 }
