@@ -2,6 +2,3 @@
 *.sqlite
 .vs/slnx.sqlite
 *.sqlite
-.vs/
-.vscode/
-.idea/
