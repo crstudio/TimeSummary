@@ -5,12 +5,13 @@
     <title>时间脚印</title>
     <link rel="stylesheet" href="css/popup.css?t=2018062201" />
     <script type="text/javascript" src="scripts/jquery.js?t=2018062201"></script>
+    <script type="text/javascript" src="scripts/common.js?t=2018062201"></script>
     <script type="text/javascript" src="scripts/popup.js?t=2018062201"></script>
 </head>
 
 <body>
     <div class="title">
-        <span>时间脚印</span>
+        <span id="title">时间脚印</span>
     </div>
     <div class="columnname">
         <ul>
@@ -21,21 +22,6 @@
     </div>
     <div id="detail">
         <div id="detailleft">
-            <ul>
-                <li class="sitecolumn">360doc个人图书馆</li>
-                <li class="timecolumn">200h</li>
-                <li class="ratiocolumn">10%</li>
-            </ul>
-            <ul>
-                <li class="sitecolumn">百度</li>
-                <li class="timecolumn">100%</li>
-                <li class="ratiocolumn">9s</li>
-            </ul>
-            <ul>
-                <li class="sitecolumn">去哪儿网</li>
-                <li class="timecolumn">88m</li>
-                <li class="ratiocolumn">99%</li>
-            </ul>
         </div>
         <div id="detailright">
             <ul>
@@ -57,8 +43,11 @@
     </div>
     <div class="operate">
         <div id="switchDetailType">
-            <input class="tgl tgl-flip" id="cb5" type="checkbox" />
-            <label class="tgl-btn" data-tg-off="今" data-tg-on="总" for="cb5"></label>
+            <div class="switchPanel">
+                <span id="spanToday">今</span>
+                <span id="spanTotal">总</span>
+                <div id="switchSlider"></div>
+            </div>
         </div>
         <div class="filltemp"></div>
         <div id="settingbtn">

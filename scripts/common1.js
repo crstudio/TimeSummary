@@ -1,18 +1,4 @@
-﻿var tsCommonJS = {
-    getStorageJson: function (name) {
-        let storageJson;
-        let storageData = localStorage.getItem(name);
-        if (storageData != "" && storageData != null) {
-            storageJson = JSON.parse(storageData);
-        }
-        return storageJson;
-    }
-};
-
- 
-
-
-function getDateStr() {
+﻿function getDateStr() {
     var dateStr = "";
     var d = new Date();
     dateStr += d.getFullYear();
@@ -23,8 +9,8 @@ function getDateStr() {
 //获取当前时间
 function getTimeStr() {
     var myDate = new Date();
-    var h = myDate.getHours(); //获取当前小时数(0-23)
-    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+    var h = myDate.getHours();       //获取当前小时数(0-23)
+    var m = myDate.getMinutes();     //获取当前分钟数(0-59)
     var s = myDate.getSeconds();
     return (h > 10 ? h : "0" + h) + ":" + (m > 10 ? m : "0" + m) + ":" + (s > 10 ? s : "0" + s);
 }
@@ -35,15 +21,11 @@ function jsonSort(array, field, reverse) {
     if (array.length < 2 || !field || typeof array[0] !== "object") return array;
     //数字类型排序
     if (typeof array[0][field] === "number") {
-        array.sort(function (x, y) {
-            return x[field] - y[field]
-        });
+        array.sort(function (x, y) { return x[field] - y[field] });
     }
     //字符串类型排序
     if (typeof array[0][field] === "string") {
-        array.sort(function (x, y) {
-            return x[field].localeCompare(y[field])
-        });
+        array.sort(function (x, y) { return x[field].localeCompare(y[field]) });
     }
     //倒序
     if (reverse) {
@@ -56,10 +38,10 @@ function getSiteName(sitedomain) {
     var sitename = "";
     var csnTemp = localStorage.getItem("timesummaryCSN");
     jsonCustomerSiteName = csnTemp == null || csnTemp == "" ? {} : JSON.parse(csnTemp);
-    if (jsonCustomerSiteName.hasOwnProperty(sitedomain) && jsonCustomerSiteName[sitedomain].sitename != "") { //如果重命名过，则显示重命名
+    if (jsonCustomerSiteName.hasOwnProperty(sitedomain) && jsonCustomerSiteName[sitedomain].sitename != "") {   //如果重命名过，则显示重命名
         sitename = jsonCustomerSiteName[sitedomain].sitename;
-    } else if (localStorage.getItem("showdefaultname") != "0") { //显示提供的默认网站名
-        if (sitejson[sitedomain] != undefined) { //如果sitejson中包含了该网址，则显示sitejson中的名称
+    } else if (localStorage.getItem("showdefaultname") != "0") {        //显示提供的默认网站名
+        if (sitejson[sitedomain] != undefined) {        //如果sitejson中包含了该网址，则显示sitejson中的名称
             sitename = sitejson[sitedomain];
         } else {
             var isHadReapeatSite = false;
