@@ -65,6 +65,11 @@ body {
     margin: 0.2rem 0;
 }
 
+.sitedetailul:hover {
+    color: #a00;
+    font-weight: 600;
+}
+
 #detailleft,
 #detailright {
     overflow: hidden;
@@ -76,6 +81,10 @@ body {
 .sitecolumn {
     flex: 3;
     text-align: left;
+}
+
+.sitedetailcolumn {
+    cursor: pointer;
 }
 
 /* 时间列 */
@@ -137,8 +146,6 @@ body {
     left: 0;
     z-index: 1;
 }
-
-
 
 #spanToday {
     color: #ffffff;

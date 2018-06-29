@@ -21,6 +21,15 @@
             chrome.runtime.openOptionsPage();
         }
     });
+    $(".sitedetailcolumn").on({
+        "click": function () {
+            if (tsCommonJS.getStorage("tsnewtabcheck") == 1) {
+                chrome.tabs.create({
+                    url: "http://" + $(this).attr("title")
+                }, function () {});
+            }
+        }
+    });
 
 });
 
@@ -41,6 +50,7 @@ var popup = {
                     left: this.isToday ? "22.5px" : "0"
                 }, 'normal');
                 this.isToday = !this.isToday;
+                this.setDetail();
                 break;
             case "over": //切换按钮鼠标移入事件
                 $("#switchSlider").css("background", "#a00");
@@ -53,12 +63,32 @@ var popup = {
             default:
                 break;
         }
-    }, 
+    },
     setDetail: function () {
-        let detailJson = tsCommonJS.getStorageJson('timesummary');
-        detailJson = jsonSort(detailJson, 'timevalue', true);
-        for (let i = 0; i < 15; i++) {
-            $("#detailleft").append('<ul><li class="sitecolumn">' + detailJson[i].sitedomain+ '</li><li class="timecolumn">' + detailJson[i].timevalue + '</li><li class="ratiocolumn">10%</li></ul>');
+        let nameTotalTime = ""; //总时间localstorage名称
+        let nameDetail = ""; //详情localstorage名称
+        let nameDetailHtml = ""; //列表容器ID
+        if (this.isToday) {
+            nameTotalTime = "tstotaltime";
+            nameDetail = "timesummary";
+            nameDetailHtml = "detailleft";
+        } else {
+            nameTotalTime = "tstotaltime_today";
+            nameDetail = "timesummary_today";
+            nameDetailHtml = "detailright";
+        }
+        let showNum = tsCommonJS.getShowNum(); //显示网址数
+        let totalTime = tsCommonJS.getStorageJson(nameTotalTime); //总时间
+        let detailJson = tsCommonJS.getStorageJson(nameDetail); //获取数据
+        detailJson = this.isToday ? detailJson : detailJson.site;
+        detailJson = tsCommonJS.jsonSort(detailJson, 'timevalue', true); //排序
+        showNum = showNum < detailJson.length ? showNum : detailJson.length;
+        $("#" + nameDetailHtml).html('');
+        for (let i = 0; i < showNum; i++) {
+            let displaySiteName = tsCommonJS.getSiteName(detailJson[i].sitedomain);
+            let displaySiteTime = tsCommonJS.secondToCommonTime(detailJson[i].timevalue);
+            let ratio = Math.round(detailJson[i].timevalue / totalTime * 1000) / 10.0;
+            $("#" + nameDetailHtml).append('<ul class="sitedetailul"><li class="sitecolumn sitedetailcolumn" title="' + detailJson[i].sitedomain + '">' + displaySiteName + '</li><li class="timecolumn">' + displaySiteTime + '</li><li class="ratiocolumn">' + ratio + '%</li></ul>');
         }
     }
 }
