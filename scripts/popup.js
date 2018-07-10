@@ -74,7 +74,7 @@ var popup = {
         detailJson = this.isToday ? detailJson.site : detailJson;
         detailJson = tsCommonJS.jsonSort(detailJson, 'timevalue', true); //排序
         if (detailJson.length === 0) {
-            $("#" + nameDetailHtml).append('暂无记录');
+            $("#" + nameDetailHtml).append('<div class="nohistory">暂无记录</div>');
             return;
         }
         showNum = showNum < detailJson.length ? showNum : detailJson.length;
