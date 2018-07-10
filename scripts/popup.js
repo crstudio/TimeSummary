@@ -66,14 +66,18 @@ var popup = {
             nameTotalTime = "tstotaltime";
             nameDetail = "timesummary";
             nameDetailHtml = "detailright";
-        }
+        } 
+        $("#" + nameDetailHtml).html('');
         let showNum = tsCommonJS.getShowNum(); //显示网址数
         let totalTime = tsCommonJS.getStorageJson(nameTotalTime); //总时间
         let detailJson = tsCommonJS.getStorageJson(nameDetail); //获取数据
         detailJson = this.isToday ? detailJson.site : detailJson;
         detailJson = tsCommonJS.jsonSort(detailJson, 'timevalue', true); //排序
+        if (detailJson.length === 0) {
+            $("#" + nameDetailHtml).append('暂无记录');
+            return;
+        }
         showNum = showNum < detailJson.length ? showNum : detailJson.length;
-        $("#" + nameDetailHtml).html('');
         for (let i = 0; i < showNum; i++) {
             let displaySiteName = tsCommonJS.getSiteName(detailJson[i].sitedomain);
             let displaySiteTime = tsCommonJS.secondToCommonTime(detailJson[i].timevalue);

@@ -76,6 +76,11 @@ body {
     flex: 1;
 }
 
+.nohistory {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 /* 网址列 */
 
 .sitecolumn {
