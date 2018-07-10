@@ -88,8 +88,8 @@
     getShowNum: function () {
         let showNum = this.getStorage("TMshowsitenum");
         if (showNum === null || showNum === 0) {
-            showNum = 15;
-            localStorage.setItem("TMshowsitenum", "15");
+            showNum = 10;
+            localStorage.setItem("TMshowsitenum", "10");
         }
         return showNum;
     }
