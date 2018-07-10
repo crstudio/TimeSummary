@@ -29,7 +29,7 @@ $(function () {
     }
     //显示条数
     var showNum = localStorage.getItem("TMshowsitenum");
-    showNum = showNum == null ? "15" : showNum;
+    showNum = showNum == null ? "10" : showNum;
     $("#showsitenum").val(showNum);
     csnTemp = localStorage.getItem("timesummaryCSN");
     jsonCustomerSiteName = csnTemp == null || csnTemp == "" ? {} : JSON.parse(csnTemp);
@@ -46,7 +46,7 @@ $(function () {
 
 function setSiteList() {
     let siteData = JSON.parse(localStorage.getItem("timesummary"));
-    siteData = jsonSort(siteData, 'timevalue', true);
+    siteData = tsCommonJS.jsonSort(siteData, 'timevalue', true);
     let siteListHtml = "";
     let defaultSiteName = "";       //默认网站名
     let customSiteName = "";    //自定义网站名

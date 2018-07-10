@@ -317,7 +317,15 @@
     "meituan.com": "美团网",
     "nuomi.com": "糯米网",
     "stackoverflow.com": "stackoverflow",
-    "sports.qq.com": "腾讯体育"
+    "sports.qq.com": "腾讯体育",
+    "taptap.com": "TapTap",
+    "open.weixin.qq.com": "微信开放平台",
+    "tool.oschina.net": "在线工具",
+    "wukong.com": "悟空问答",
+    "mp.weixin.qq.com": "微信公众号",
+    "v2ex.com":"V2EX",
+    "dongqiudi.com":"懂球帝",
+    "msdn.itellyou.cn":"MSDN，我告诉你"
 };
 
 var repeatSiteUrl = ["ganji.com", "google.com", "jd.com", "zhibo8.cc", "damai.cn", "taobao.com", "tmall.com", "bilibili.com", "youku.com", "pptv.com", "github.com", "hupu.com", "chinaz.com", "youtube.com", "bing.com", "douyu.com", "nike.com", "adidas.com", "xiazaiba.com", "microsoft.com", "zol.com", "panda.tv", "weibo.com", "zuimeia.com", "minapp.com", "laonanren.com", "497.com", "segmentfault.com", "anjuke.com", "douban.com", "ifanr.com", "12306.cn", "3dmgame.com", "flyme.cn", "meituan.com", "nuomi.com"];

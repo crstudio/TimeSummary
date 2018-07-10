@@ -21,16 +21,6 @@
             chrome.runtime.openOptionsPage();
         }
     });
-    $(".sitedetailcolumn").on({
-        "click": function () {
-            if (tsCommonJS.getStorage("tsnewtabcheck") == 1) {
-                chrome.tabs.create({
-                    url: "http://" + $(this).attr("title")
-                }, function () {});
-            }
-        }
-    });
-
 });
 
 var popup = {
@@ -69,26 +59,37 @@ var popup = {
         let nameDetail = ""; //详情localstorage名称
         let nameDetailHtml = ""; //列表容器ID
         if (this.isToday) {
-            nameTotalTime = "tstotaltime";
-            nameDetail = "timesummary";
-            nameDetailHtml = "detailleft";
-        } else {
             nameTotalTime = "tstotaltime_today";
             nameDetail = "timesummary_today";
+            nameDetailHtml = "detailleft";
+        } else {
+            nameTotalTime = "tstotaltime";
+            nameDetail = "timesummary";
             nameDetailHtml = "detailright";
         }
         let showNum = tsCommonJS.getShowNum(); //显示网址数
         let totalTime = tsCommonJS.getStorageJson(nameTotalTime); //总时间
         let detailJson = tsCommonJS.getStorageJson(nameDetail); //获取数据
-        detailJson = this.isToday ? detailJson : detailJson.site;
+        detailJson = this.isToday ? detailJson.site : detailJson;
         detailJson = tsCommonJS.jsonSort(detailJson, 'timevalue', true); //排序
         showNum = showNum < detailJson.length ? showNum : detailJson.length;
         $("#" + nameDetailHtml).html('');
         for (let i = 0; i < showNum; i++) {
             let displaySiteName = tsCommonJS.getSiteName(detailJson[i].sitedomain);
             let displaySiteTime = tsCommonJS.secondToCommonTime(detailJson[i].timevalue);
-            let ratio = Math.round(detailJson[i].timevalue / totalTime * 1000) / 10.0;
+            let ratio = Math.floor(Math.round(detailJson[i].timevalue / totalTime * 1000) / 10);
+            if (ratio === 0) {
+                ratio = 1;
+            }
             $("#" + nameDetailHtml).append('<ul class="sitedetailul"><li class="sitecolumn sitedetailcolumn" title="' + detailJson[i].sitedomain + '">' + displaySiteName + '</li><li class="timecolumn">' + displaySiteTime + '</li><li class="ratiocolumn">' + ratio + '%</li></ul>');
         }
+        // 加上网站点击直达
+        $(".sitedetailcolumn").on({
+            "click": function () {
+                chrome.tabs.create({
+                    url: "http://" + $(this).attr("title")
+                }, function () {});
+            }
+        });
     }
 }

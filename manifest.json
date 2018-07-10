@@ -15,7 +15,7 @@
   "name": "时间脚印",
   "options_page": "options.html",
   "permissions": [ "tabs", "activeTab", "notifications" ],
-  "version": "3.0.3",
+  "version": "2.0.0",
   "offline_enabled": true,
   "short_name": "TimeSummary"
 }

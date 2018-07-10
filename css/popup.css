@@ -66,8 +66,8 @@ body {
 }
 
 .sitedetailul:hover {
-    color: #a00;
-    font-weight: 600;
+    color: #808080;
+    /* font-weight: 600; */
 }
 
 #detailleft,
