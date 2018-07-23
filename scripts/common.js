@@ -92,6 +92,10 @@
             localStorage.setItem("TMshowsitenum", "10");
         }
         return showNum;
+    },
+    //获取多语言文本
+    getLocalText:function(key){ 
+       return chrome.i18n.getMessage(key);
     }
 };
 

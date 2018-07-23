@@ -326,7 +326,9 @@
     "v2ex.com": "V2EX",
     "dongqiudi.com": "懂球帝",
     "msdn.itellyou.cn": "MSDN，我告诉你",
-    "baijiahao.baidu.com": "百度百家号"
+    "baijiahao.baidu.com": "百度百家号",
+    "runoob.com": "菜鸟教程",
+    "linkedin.com":"领英"
 };
 
 var repeatSiteUrl = ["ganji.com", "google.com", "jd.com", "zhibo8.cc", "damai.cn", "taobao.com", "tmall.com", "bilibili.com", "youku.com", "pptv.com", "github.com", "hupu.com", "chinaz.com", "youtube.com", "bing.com", "douyu.com", "nike.com", "adidas.com", "xiazaiba.com", "microsoft.com", "zol.com", "panda.tv", "weibo.com", "zuimeia.com", "minapp.com", "laonanren.com", "497.com", "segmentfault.com", "anjuke.com", "douban.com", "ifanr.com", "12306.cn", "3dmgame.com", "flyme.cn", "meituan.com", "nuomi.com"];

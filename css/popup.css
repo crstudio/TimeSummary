@@ -31,8 +31,15 @@ body {
     height: 1.5rem;
     text-align: center;
     font-size: 1rem;
-    display: inline-block;
+    display: inline-block; 
+    letter-spacing: 0.05rem;
+}
+.title_zh{  
     letter-spacing: 0.5rem;
+}
+.title_en{ 
+    font-weight: 400;
+    letter-spacing: 0.05rem;
 }
 
 .columnname {
@@ -164,7 +171,7 @@ body {
 
 #settingbtn {
     flex: 0 0 auto;
-    width: 45px;
+    width: 60px;
     cursor: pointer;
     height: 1.8rem;
     line-height: 1.8rem;

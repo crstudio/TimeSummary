@@ -1,4 +1,5 @@
 ﻿$(function () {
+    popup.init();
     popup.setDetail();
     $("#title").on({
         "click": function () {
@@ -25,6 +26,12 @@
 
 var popup = {
     isToday: true, //展示类型 true：今天、false：总共
+    init: function () { 
+        $("[local-data-html]").each(function () {
+            var message = tsCommonJS.getLocalText(this.getAttribute('local-data-html'));
+            $(this).html(message);
+        }); 
+    },
     // “今/总”按钮鼠标事件
     switchBtnMouseEvent: function (type) {
         let btnSelected = this.isToday ? "spanTotal" : "spanToday";
@@ -66,7 +73,7 @@ var popup = {
             nameTotalTime = "tstotaltime";
             nameDetail = "timesummary";
             nameDetailHtml = "detailright";
-        } 
+        }
         $("#" + nameDetailHtml).html('');
         let showNum = tsCommonJS.getShowNum(); //显示网址数
         let totalTime = tsCommonJS.getStorageJson(nameTotalTime); //总时间

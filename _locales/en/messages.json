@@ -1,0 +1,23 @@
+{
+    "appname": {
+        "message": "TimeSummary"
+    },
+    "title_site":{
+        "message":"Site"
+    },
+    "title_time": {
+        "message": "Time"
+    },
+    "title_ratio": {
+        "message": "Ratio"
+    },
+    "switchbtn_today": {
+        "message": "T"
+    },
+    "switchbtn_total": {
+        "message": "A"
+    },
+    "btn_option": {
+        "message": "Option"
+    }
+}

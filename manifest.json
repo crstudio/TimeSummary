@@ -12,10 +12,11 @@
     "128": "images/icon_128.png"
   },
   "manifest_version": 2,
-  "name": "时间脚印",
+  "name": "__MSG_appname__",
   "options_page": "options.html",
   "permissions": [ "tabs", "activeTab", "notifications" ],
-  "version": "2.0.0",
+  "version": "3.0.4",
   "offline_enabled": true,
-  "short_name": "TimeSummary"
+  "short_name": "TimeSummary",
+  "default_locale": "zh_CN"
 }

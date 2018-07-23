@@ -1,0 +1,23 @@
+{
+    "appname": {
+        "message": "时间脚印"
+    },
+    "title_site": {
+        "message": "网站"
+    },
+    "title_time": {
+        "message": "时间"
+    },
+    "title_ratio": {
+        "message": "占比"
+    },
+    "switchbtn_today": {
+        "message": "今"
+    },
+    "switchbtn_total": {
+        "message": "总"
+    },
+    "btn_option": {
+        "message": "选项"
+    }
+}
