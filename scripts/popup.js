@@ -27,10 +27,11 @@
 var popup = {
     isToday: true, //展示类型 true：今天、false：总共
     init: function () { 
-        $("[local-data-html]").each(function () {
-            var message = tsCommonJS.getLocalText(this.getAttribute('local-data-html'));
-            $(this).html(message);
-        }); 
+        if (tsCommonJS.getLocalText("appname") === "时间脚印") {
+            $("#title").addClass("title_zh");
+        } else {
+            $("#title").addClass("title_en");
+        }
     },
     // “今/总”按钮鼠标事件
     switchBtnMouseEvent: function (type) {
@@ -46,6 +47,7 @@ var popup = {
                 $("#switchSlider").animate({
                     left: this.isToday ? "22.5px" : "0"
                 }, 'normal');
+                $("#switchDetailType").attr("title", this.isToday ? tsCommonJS.getLocalText("tip_totay") : tsCommonJS.getLocalText("tip_total")); //切换按钮提示
                 this.isToday = !this.isToday;
                 this.setDetail();
                 break;

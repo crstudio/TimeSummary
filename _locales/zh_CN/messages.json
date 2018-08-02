@@ -17,7 +17,28 @@
     "switchbtn_total": {
         "message": "总"
     },
-    "btn_option": {
+    "tip_totay": {
+        "message": ""
+    },
+    "tip_total": {
+        "message": ""
+    },
+    "option": {
         "message": "选项"
+    },
+    "sitelist": {
+        "message": "网站列表"
+    },
+    "showsystemsitename": {
+        "message": "显示自定义的网站名"
+    },
+    "clearhistory": {
+        "message": "清除所有记录"
+    },
+    "save": {
+        "message": "保存"
+    },
+    "customsitename": {
+        "message": "自定义网站名"
     }
 }

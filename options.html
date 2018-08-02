@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>时间脚印配置项</title>
+    <title local-data-html="appname">TimeSummary</title>
     <link rel="stylesheet" href="css/options.css?t=2017070702" />
     <script type="text/javascript" src="scripts/jquery.js?t=2017070701"></script>
     <script type="text/javascript" src="scripts/site.js?t=2017070701"></script>
@@ -16,7 +16,7 @@
         <header class="fe-opt-header">
             <div class="bar">
                 <img src="images/icon_48.png" width="24">
-                <span class="text">时间脚印设置</span>
+                <span class="text" local-data-html="appname"></span>
             </div>
         </header>
         <section class="fe-opt-content">
@@ -25,9 +25,9 @@
                     <ul class="no-list-style">
                         <li>
                             <fieldset>
-                                <legend>选项</legend>
+                                <legend local-data-html="option"></legend>
                                 <input id="checkshowname" type="checkbox" checked="">
-                                <label for="checkshowname">显示自带备注网站名</label>
+                                <label for="checkshowname" local-data-html="showsystemsitename"></label>
                                 <br>
                                 <input id="checktopmsg" name="checktopmsg" type="checkbox" checked="">
                                 <label for="checktopmsg">每日浏览排行榜消息提示</label>
@@ -44,19 +44,19 @@
                                     <option value="25">25</option>
                                 </select>
                                 <div class="mod-btns">
-                                    <button class="btn" id="btnsave" style="width:50px;">保存</button>
-                                    <button id="btnclearhistory" class="btn" style="width:100px;">清除所有记录</button>
+                                    <button id="btnSave" class="btn" style="width:50px;" local-data-html="save"></button>
+                                    <button id="btnClearHistory" class="btn" style="width:100px;" local-data-html="clearhistory"></button>
                                 </div>
                             </fieldset>
                         </li>
                         <li>
                             <fieldset>
-                                <legend>网站列表</legend>
+                                <legend local-data-html="sitelist"></legend>
                                 <table class="gridtable" id="sitelist">
                                     <tr>
-                                        <th class="sitename">网址</th>
+                                        <th class="sitename" local-data-html="title_site"></th>
                                         <th class="defaultname">默认网站名</th>
-                                        <th class="defaultname">自定义网站名</th>
+                                        <th class="defaultname" local-data-html="customsitename"></th>
                                         <th class="savebtn"></th>
                                     </tr>
                                 </table>

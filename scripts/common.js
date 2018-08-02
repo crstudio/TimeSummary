@@ -1,4 +1,16 @@
-﻿var tsCommonJS = {
+﻿$(function () {
+    $("[local-data-html]").each(function () { 
+        $(this).html(tsCommonJS.getLocalText(this.getAttribute("local-data-html")));
+    });
+    $("[local-data-val]").each(function () {
+        $(this).val(tsCommonJS.getLocalText(this.getAttribute("local-data-val")));
+    });
+    $("[local-data-title]").each(function () {
+        $(this).attr("title", tsCommonJS.getLocalText(this.getAttribute("local-data-title")));
+    });
+});
+
+var tsCommonJS = {
     //读取localstorage中的数据
     getStorage: function (name) {
         return localStorage.getItem(name);
@@ -94,8 +106,13 @@
         return showNum;
     },
     //获取多语言文本
-    getLocalText:function(key){ 
-       return chrome.i18n.getMessage(key);
+    getLocalText: function (key) {
+        let text = chrome.i18n.getMessage(key);
+        if (text) {
+            return text;
+        } else {
+            return "";
+        }
     }
 };
 

@@ -32,7 +32,6 @@ body {
     text-align: center;
     font-size: 1rem;
     display: inline-block; 
-    letter-spacing: 0.05rem;
 }
 .title_zh{  
     letter-spacing: 0.5rem;
@@ -93,6 +92,9 @@ body {
 .sitecolumn {
     flex: 3;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .sitedetailcolumn {

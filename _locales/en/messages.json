@@ -2,8 +2,8 @@
     "appname": {
         "message": "TimeSummary"
     },
-    "title_site":{
-        "message":"Site"
+    "title_site": {
+        "message": "Site"
     },
     "title_time": {
         "message": "Time"
@@ -17,7 +17,28 @@
     "switchbtn_total": {
         "message": "A"
     },
-    "btn_option": {
+    "tip_totay": {
+        "message": "Switch to today's data"
+    },
+    "tip_total": {
+        "message": "Switch to all data"
+    },
+    "option": {
         "message": "Option"
+    },
+    "sitelist": {
+        "message": "Website List"
+    },
+    "showsystemsitename": {
+        "message": "Show friendly website name"
+    },
+    "clearhistory": {
+        "message": "Clear History"
+    },
+    "save": {
+        "message": "Save"
+    },
+    "customsitename": {
+        "message": "Custom Site Name"
     }
 }

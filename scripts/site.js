@@ -45,7 +45,7 @@
     "m.bianzhirensheng.com": "编织人生",
     "shishangnr.com": "编制小屋",
     "blog.jobbole.com": "伯乐在线",
-    "cnblogs.com": "博客园",
+    "cnblogs.com": "bokeyuan",
     "m.blogchina.com": "博客中国",
     "cankaoxiaoxi.com": "参考消息",
     "stcv5.vivame.cn": "畅读",

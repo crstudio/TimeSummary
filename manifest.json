@@ -18,5 +18,5 @@
   "version": "3.0.4",
   "offline_enabled": true,
   "short_name": "TimeSummary",
-  "default_locale": "zh_CN"
+  "default_locale": "en"
 }
