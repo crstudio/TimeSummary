@@ -40,5 +40,17 @@
     },
     "customsitename": {
         "message": "自定义网站名"
+    },
+    "defaultsitename": {
+        "message": "默认网站名"
+    },
+    "notify":{
+        "message":"每日浏览排行榜消息提示"
+    },
+    "notifytime": {
+        "message": "通知时间："
+    },
+    "numberofwebsites": {
+        "message": "网址显示个数"
     }
 }

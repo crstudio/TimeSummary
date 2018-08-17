@@ -1,6 +1,6 @@
 {
     "appname": {
-        "message": "TimeSummary"
+        "message": "Timeviewer"
     },
     "title_site": {
         "message": "Site"
@@ -39,6 +39,18 @@
         "message": "Save"
     },
     "customsitename": {
-        "message": "Custom Site Name"
+        "message": "Custom Name"
+    },
+    "defaultsitename":{
+        "message": "Default Name"
+    },
+    "notify":{
+        "message":"Daily browsing ranking list message reminder"
+    },
+    "notifytime":{
+        "message": "Time:"
+    },
+    "numberofwebsites": {
+        "message": "Show the number of websites"
     }
 }
