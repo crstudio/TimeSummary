@@ -12,6 +12,7 @@ $(function () {
     });
 });
 var opt = {
+    //自定义网站命名Json
     jsonCustomerSiteName: "",
     //初始化
     init: function () {
@@ -70,7 +71,7 @@ var opt = {
             localStorage.setItem("timesummary_today", ""); //今天网站时间json
             localStorage.setItem("tstotaltime_today", ""); //今天总时间
             localStorage.setItem("timesummaryCSN", ""); //自定义网站名
-            opt.initSiteList();     //重新加载网站列表
+            opt.initSiteList(); //重新加载网站列表
             alert("清除完成！");
         }
         chrome.extension.sendRequest({
@@ -86,13 +87,13 @@ var opt = {
         let customSiteName = ""; //自定义网站名
         let siteCount = siteData.length > 100 ? 100 : siteData.length; //显示网站个数
         for (var i = 0; i < siteCount; i++) {
-            defaultSiteName = sitejson[siteData[i].sitedomain] != undefined ? sitejson[siteData[i].sitedomain] : "";
+            defaultSiteName = sitejson[siteData[i].sitedomain] != undefined && sitejson[siteData[i].sitedomain][tsCommonJS.lang] != undefined && sitejson[siteData[i].sitedomain][tsCommonJS.lang] != "" ? sitejson[siteData[i].sitedomain][tsCommonJS.lang] : "";
             if (jsonCustomerSiteName.hasOwnProperty(siteData[i].sitedomain) && jsonCustomerSiteName[siteData[i].sitedomain].sitename != "") { //如果重命名过，则显示重命名
                 customSiteName = jsonCustomerSiteName[siteData[i].sitedomain].sitename;
             } else {
                 customSiteName = "";
             }
-            siteListHtml += "<tr><td id='sitename" + i + "' class='sitename' title='" + siteData[i].sitedomain + "'>" + siteData[i].sitedomain + "</td><td title='" + defaultSiteName + "'>" + defaultSiteName + "</td><td><input id='input" + i + "' class='custominput' autocomplete='off' value='" + customSiteName + "' /></td><td class='savebtn'><button id='sitesavebtn" + i + "' class='sitesavebtn' type='button'>"+tsCommonJS.getLocalText("save")+"</button></td></tr>";
+            siteListHtml += "<tr><td id='sitename" + i + "' class='sitename' title='" + siteData[i].sitedomain + "'>" + siteData[i].sitedomain + "</td><td title='" + defaultSiteName + "'>" + defaultSiteName + "</td><td><input id='input" + i + "' class='custominput' autocomplete='off' value='" + customSiteName + "' /></td><td class='savebtn'><button id='sitesavebtn" + i + "' class='sitesavebtn' type='button'>" + tsCommonJS.getLocalText("save") + "</button></td></tr>";
         }
         $("#sitelist").append(siteListHtml);
         $(".sitesavebtn").click(function (event) {

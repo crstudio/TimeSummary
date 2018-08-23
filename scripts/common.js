@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $("[local-data-html]").each(function () { 
+    $("[local-data-html]").each(function () {
         $(this).html(tsCommonJS.getLocalText(this.getAttribute("local-data-html")));
     });
     $("[local-data-val]").each(function () {
@@ -11,6 +11,8 @@
 });
 
 var tsCommonJS = {
+    //当前语言
+    lang: chrome.i18n.getMessage('lang'),
     //读取localstorage中的数据
     getStorage: function (name) {
         return localStorage.getItem(name);
@@ -76,8 +78,8 @@ var tsCommonJS = {
         if (customNameJson.hasOwnProperty(sitedomain) && customNameJson[sitedomain].sitename != "") { //如果自定义过，则显示自定义网站名
             sitename = customNameJson[sitedomain].sitename;
         } else if (this.getStorage("showdefaultname") !== "0") { //如果显示系统默认网站名
-            if (sitejson[sitedomain] != undefined) { //如果sitejson中包含了该网址，则显示sitejson中的名称
-                sitename = sitejson[sitedomain];
+            if (sitejson[sitedomain] != undefined && sitejson[sitedomain][tsCommonJS.lang] != undefined && sitejson[sitedomain][tsCommonJS.lang] != "") { //如果sitejson中包含了该网址，则显示sitejson中的名称
+                sitename = sitejson[sitedomain][tsCommonJS.lang];
             } else {
                 let isHadReapeatSite = false;
                 for (let j = 0; j < repeatSiteUrl.length; j++) {

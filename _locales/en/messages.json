@@ -1,4 +1,7 @@
 {
+    "lang": {
+        "message": "en"
+    },
     "appname": {
         "message": "Timeviewer"
     },
