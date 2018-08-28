@@ -55,5 +55,17 @@
     },
     "numberofwebsites": {
         "message": "Show the number of websites"
+    },
+    "todaystop3":{
+        "message":"Today`s Top3"
+    },
+    "savedsuccessfully":{
+        "message":"Saved Successfully!"
+    },
+    "clearsuccessfully":{
+        "message":"Clear Successfully!"
+    },
+    "clearallrecords":{
+        "message":"Clear all records?"
     }
 }

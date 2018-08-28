@@ -1,6 +1,6 @@
 ﻿{
   "background": {
-    "scripts": [ "scripts/site.js", "scripts/common.js", "scripts/background.js" ],
+    "scripts": [ "scripts/jquery.js", "scripts/site.js", "scripts/common.js", "scripts/background.js" ],
     "persistent": true
   },
   "browser_action": {

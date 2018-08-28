@@ -61,18 +61,18 @@ var opt = {
         chrome.extension.sendRequest({
             greeting: "updatenum"
         }, function (response) {});
-        alert("保存成功！");
+        alert(tsCommonJS.getLocalText("savedsuccessfully"));
     },
     //清除记录
     clearHistory: function () {
-        if (confirm("是否确认清除所有记录？")) {
+        if (confirm(tsCommonJS.getLocalText("clearallrecords"))) {
             localStorage.setItem("timesummary", ""); //网站时间json
             localStorage.setItem("tstotaltime", ""); //总时间
             localStorage.setItem("timesummary_today", ""); //今天网站时间json
             localStorage.setItem("tstotaltime_today", ""); //今天总时间
             localStorage.setItem("timesummaryCSN", ""); //自定义网站名
             opt.initSiteList(); //重新加载网站列表
-            alert("清除完成！");
+            alert(tsCommonJS.getLocalText("clearsuccessfully"));
         }
         chrome.extension.sendRequest({
             greeting: "clearhistory"

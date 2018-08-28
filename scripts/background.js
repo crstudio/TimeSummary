@@ -1,175 +1,159 @@
-﻿let timeJson;
-let timeJsonToday;
-let timeDateStorage;        //总共
-let timeDateStorageToday;       //今天
+﻿$(function () {
+    background.getDataFromStorage();
+});
 
-//从localStorage中读取数据
-getDataFromStorage();
-
-function getDataFromStorage() {
-    //获取总数据
-    timeDateStorage = localStorage.getItem("timesummary");
-    if (timeDateStorage == null || timeDateStorage === "") {
-        timeJson = [];
-        localStorage.setItem("timesummary", JSON.stringify(timeJson));
-    } else {
-        timeJson = JSON.parse(timeDateStorage);
-    }
-    //获取今天数据
-    timeDateStorageToday = localStorage.getItem("timesummary_today");
-    let todayStr = getDateStr();
-    if (timeDateStorageToday == null || timeDateStorageToday === "") {
-        timeJsonToday = {"date": "" + todayStr + "", "site": []};
-        localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
-        localStorage.setItem("tstotaltime_today", 0);
-    } else {
-        timeJsonToday = JSON.parse(timeDateStorageToday);
-        if (timeJsonToday.date !== todayStr) {
-            timeJsonToday = {"date": "" + todayStr + "", "site": []};
-            localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
-            localStorage.setItem("tstotaltime_today", 0);
-        }
-    }
-}
-
-window.setInterval(function () {    //获取当前路径
+window.setInterval(function () { //获取当前路径
     chrome.tabs.getSelected(null, function (tab) {
-        let sitedomain = urlToDomain(tab.url);
-        sitedomain = getSingleUrl(sitedomain);
+        let sitedomain = tsCommonJS.urlToDomain(tab.url);
+        sitedomain = tsCommonJS.getSingleUrl(sitedomain);
         if (sitedomain !== "") {
-            let todayStr = getDateStr();
-            if (timeJsonToday.date !== todayStr) {
-                timeJsonToday = {"date": "" + todayStr + "", "site": []};
-                localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
+            let todayStr = tsCommonJS.getDateStr();
+            if (background.timeJsonToday.date !== todayStr) {
+                background.timeJsonToday = {
+                    "date": "" + todayStr + "",
+                    "site": []
+                };
+                localStorage.setItem("timesummary_today", JSON.stringify(background.timeJsonToday));
                 localStorage.setItem("tstotaltime_today", 0);
             }
-            addTimeToTotal();
-            addTimeToSite(sitedomain);
+            background.addTimeToTotal();
+            background.addTimeToSite(sitedomain);
         }
     });
-    if (localStorage.getItem("tstopmsg") != null && localStorage.getItem("tstopmsg") !== "" && getTimeStr() === localStorage.getItem("tstopmsg") + ":00") {
-        notifyMe();
+    if (localStorage.getItem("tstopmsg") != null && localStorage.getItem("tstopmsg") !== "" && tsCommonJS.getTimeStr() === localStorage.getItem("tstopmsg") + ":00") {
+        background.notifyMe();
     }
 }, 1000);
-
-function addTimeToSite(sitedomain) {
-    let isAdded = false;
-    let isAddedToday = false;
-    //总数据
-    for (let i = 0; i < timeJson.length; i++) {
-        if (timeJson[i].sitedomain === sitedomain) {
-            timeJson[i].timevalue += 1;
-            isAdded = true;
-            break;
-        }
-    }
-    if (!isAdded) {
-        let arr = {"sitedomain": sitedomain, "timevalue": 1}
-        timeJson.push(arr);
-    }
-    //今天数据
-    for (let i = 0; i < timeJsonToday.site.length; i++) {
-        if (timeJsonToday.site[i].sitedomain === sitedomain) {
-            timeJsonToday.site[i].timevalue += 1;
-            isAddedToday = true;
-            break;
-        }
-    }
-    if (!isAddedToday) {
-        let arr = {"sitedomain": sitedomain, "timevalue": 1}
-        timeJsonToday.site.push(arr);
-    }
-
-    localStorage.setItem("timesummary", JSON.stringify(timeJson));
-    localStorage.setItem("timesummary_today", JSON.stringify(timeJsonToday));
-
-    isAdded = false;
-    isAddedToday = false;
-}
-
-//记录总时间
-function addTimeToTotal() {
-    let totalTime = parseInt(localStorage.getItem("tstotaltime"));
-    if (totalTime === 0 || totalTime == null || isNaN(totalTime)) {
-        totalTime = 1;
-        for (let i = 0; i < timeJson.length; i++) {
-            totalTime += timeJson[i].timevalue;
-        }
-    } else {
-        totalTime++;
-    }
-    localStorage.setItem("tstotaltime", totalTime);
-
-    let totalTimeToday = parseInt(localStorage.getItem("tstotaltime_today"));
-    if (totalTimeToday === 0 || totalTimeToday == null || isNaN(totalTimeToday)) {
-        totalTimeToday = 1;
-    } else {
-        totalTimeToday++;
-    }
-    localStorage.setItem("tstotaltime_today", totalTimeToday);
-}
-
-//把网址变成domain
-function urlToDomain(str) {
-    let siteDomain = "";
-    if (isSiteUrl(str)) {
-        let pattern = /^(?:(\w+):\/\/)?(?:(\w+):?(\w+)?@)?([^:\/\?#]+)(?::(\d+))?(\/[^\?#]+)?(?:\?([^#]+))?(?:#(\w+))?/;
-        siteDomain = pattern.exec(str)[4];
-        siteDomain = siteDomain.replace("www.", "");
-    }
-    return siteDomain;
-}
-
-//判断字符串是否为网址
-function isSiteUrl(url) {
-    let urlpattern = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-    let objExp = new RegExp(urlpattern);
-    return objExp.test(url);
-}
 
 //监听消息
 chrome.extension.onRequest.addListener(
     function (request, sender, sendResponse) {
         if (request.greeting === "clearhistory") { //清空历史消息
-            timeJson = [];
-            timeJsonToday = {};
-            totalTime = 0;
-            totalTimeToday = 0;
-            getDataFromStorage();
+            background.timeJson = [];
+            background.timeJsonToday = {};
+            background.getDataFromStorage();
         }
     });
 
-function getSingleUrl(stieurl) {
-    let singleUrl = stieurl;
-    for (let i = 0; i < repeatSiteUrl.length; i++) {
-        if (stieurl.indexOf(repeatSiteUrl[i]) >= 0) {
-            singleUrl = repeatSiteUrl[i];
-            break;
+var background = {
+    timeJson: "",
+    timeJsonToday: "",
+    timeDateStorage: "", //总共
+    timeDateStorageToday: "", //今天
+    getDataFromStorage: function () {
+        this.timeJson = tsCommonJS.getStorageJson("timesummary"); //获取数据
+
+        //获取今天数据
+        this.timeDateStorageToday = localStorage.getItem("timesummary_today");
+        let todayStr = tsCommonJS.getDateStr();
+        if (this.timeDateStorageToday == null || this.timeDateStorageToday === "") {
+            this.timeJsonToday = {
+                "date": "" + todayStr + "",
+                "site": []
+            };
+            localStorage.setItem("timesummary_today", JSON.stringify(this.timeJsonToday));
+            localStorage.setItem("tstotaltime_today", 0);
+        } else {
+            this.timeJsonToday = JSON.parse(this.timeDateStorageToday);
+            if (this.timeJsonToday.date !== todayStr) {
+                this.timeJsonToday = {
+                    "date": "" + todayStr + "",
+                    "site": []
+                };
+                localStorage.setItem("timesummary_today", JSON.stringify(this.timeJsonToday));
+                localStorage.setItem("tstotaltime_today", 0);
+            }
         }
-    }
-    return singleUrl;
-}
+    },
+    //消息提醒
+    notifyMe: function () {
+        if (!Notification) {
+            return;
+        }
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission();
+        } else {
+            var tipMessage = [];
+            let timeJsonTodayTemp = tsCommonJS.jsonSort(this.timeJsonToday.site, 'timevalue', true);
+            for (let i = 0; i < timeJsonTodayTemp.length && i < 3; i++) {
+                var arr = {
+                    "title": "Top" + (i + 1),
+                    "message": tsCommonJS.getSiteName(timeJsonTodayTemp[i].sitedomain) + "-" + tsCommonJS.secondToCommonTime(timeJsonTodayTemp[i].timevalue)
+                }
+                tipMessage.push(arr);
+            }
+            if (tipMessage.length == 0) {
+                return;
+            }
+            let topnotify = chrome.notifications.create(null, {
+                type: 'list',
+                iconUrl: 'images/icon_128.png',
+                title: tsCommonJS.getLocalText("appname") + '-' + tsCommonJS.getLocalText("todaystop3"),
+                message: "",
+                items: tipMessage
+            });
+        }
+    },
+    addTimeToSite: function (sitedomain) {
+        let isAdded = false;
+        let isAddedToday = false;
+        //总数据
+        for (let i = 0; i < this.timeJson.length; i++) {
+            if (this.timeJson[i].sitedomain === sitedomain) {
+                this.timeJson[i].timevalue += 1;
+                isAdded = true;
+                break;
+            }
+        }
+        if (!isAdded) {
+            let arr = {
+                "sitedomain": sitedomain,
+                "timevalue": 1
+            }
+            this.timeJson.push(arr);
+        }
+        //今天数据
+        for (let i = 0; i < this.timeJsonToday.site.length; i++) {
+            if (this.timeJsonToday.site[i].sitedomain === sitedomain) {
+                this.timeJsonToday.site[i].timevalue += 1;
+                isAddedToday = true;
+                break;
+            }
+        }
+        if (!isAddedToday) {
+            let arr = {
+                "sitedomain": sitedomain,
+                "timevalue": 1
+            }
+            this.timeJsonToday.site.push(arr);
+        }
 
-//排行提醒
-function notifyMe() {
-    if (!Notification) {
-        alert('Desktop notifications not available in your browser. Try Chromium.');
-        return;
-    }
-    if (Notification.permission !== "granted") {
-        Notification.requestPermission();
-    } else {
-        let timeJsonTodayTemp = jsonSort(timeJsonToday.site, 'timevalue', true);
-        let top1 = getSiteName(timeJsonTodayTemp[0].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[0].timevalue);
-        let top2 = getSiteName(timeJsonTodayTemp[1].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[1].timevalue);
-        let top3 = getSiteName(timeJsonTodayTemp[2].sitedomain) + "-" + secondToCommonTime(timeJsonTodayTemp[2].timevalue);
-        let topnotify = chrome.notifications.create(null, {
-            type: 'list',
-            iconUrl: 'images/icon_128.png',
-            title: '时间脚印-今日浏览排行',
-            message: "",
-            items: [{title: "Top1：", message: top1}, {title: "Top2：", message: top2}, {title: "Top3：", message: top3}]
-        });
-    }
-}
+        localStorage.setItem("timesummary", JSON.stringify(this.timeJson));
+        localStorage.setItem("timesummary_today", JSON.stringify(this.timeJsonToday));
 
+        isAdded = false;
+        isAddedToday = false;
+    },
+    //记录总时间
+    addTimeToTotal: function () {
+        let totalTime = parseInt(localStorage.getItem("tstotaltime"));
+        if (totalTime === 0 || totalTime == null || isNaN(totalTime)) {
+            totalTime = 1;
+            for (let i = 0; i < this.timeJson.length; i++) {
+                totalTime += this.timeJson[i].timevalue;
+            }
+        } else {
+            totalTime++;
+        }
+        localStorage.setItem("tstotaltime", totalTime);
+
+        let totalTimeToday = parseInt(localStorage.getItem("tstotaltime_today"));
+        if (totalTimeToday === 0 || totalTimeToday == null || isNaN(totalTimeToday)) {
+            totalTimeToday = 1;
+        } else {
+            totalTimeToday++;
+        }
+        localStorage.setItem("tstotaltime_today", totalTimeToday);
+    }
+
+}

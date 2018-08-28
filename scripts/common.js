@@ -115,25 +115,48 @@ var tsCommonJS = {
         } else {
             return "";
         }
+    },
+    //判断字符串是否为网址
+    isSiteUrl: function (url) {
+        let urlpattern = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+        let objExp = new RegExp(urlpattern);
+        return objExp.test(url);
+    },
+    //把网址变成domain
+    urlToDomain: function (str) {
+        let siteDomain = "";
+        if (this.isSiteUrl(str)) {
+            let pattern = /^(?:(\w+):\/\/)?(?:(\w+):?(\w+)?@)?([^:\/\?#]+)(?::(\d+))?(\/[^\?#]+)?(?:\?([^#]+))?(?:#(\w+))?/;
+            siteDomain = pattern.exec(str)[4];
+            siteDomain = siteDomain.replace("www.", "");
+        }
+        return siteDomain;
+    },
+    //获取单个网址
+    getSingleUrl: function (stieurl) {
+        let singleUrl = stieurl;
+        for (let i = 0; i < repeatSiteUrl.length; i++) {
+            if (stieurl.indexOf(repeatSiteUrl[i]) >= 0) {
+                singleUrl = repeatSiteUrl[i];
+                break;
+            }
+        }
+        return singleUrl;
+    },
+    getDateStr: function () {
+        var dateStr = "";
+        var d = new Date();
+        dateStr += d.getFullYear();
+        dateStr += (d.getMonth() + 1) >= 10 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1);
+        dateStr += d.getDate();
+        return dateStr;
+    },
+    //获取当前时间
+    getTimeStr: function () {
+        var myDate = new Date();
+        var h = myDate.getHours(); //获取当前小时数(0-23)
+        var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+        var s = myDate.getSeconds();
+        return (h >= 10 ? h : "0" + h) + ":" + (m >= 10 ? m : "0" + m) + ":" + (s >= 10 ? s : "0" + s);
     }
 };
-
-
-
-
-function getDateStr() {
-    var dateStr = "";
-    var d = new Date();
-    dateStr += d.getFullYear();
-    dateStr += (d.getMonth() + 1) >= 10 ? d.getMonth() + 1 : "0" + (d.getMonth() + 1);
-    dateStr += d.getDate();
-    return dateStr;
-}
-//获取当前时间
-function getTimeStr() {
-    var myDate = new Date();
-    var h = myDate.getHours(); //获取当前小时数(0-23)
-    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
-    var s = myDate.getSeconds();
-    return (h > 10 ? h : "0" + h) + ":" + (m > 10 ? m : "0" + m) + ":" + (s > 10 ? s : "0" + s);
-}

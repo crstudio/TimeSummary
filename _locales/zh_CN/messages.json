@@ -55,5 +55,17 @@
     },
     "numberofwebsites": {
         "message": "网址显示个数"
+    },
+    "todaystop3":{
+        "message":"今日排行榜"
+    },
+    "savedsuccessfully":{
+        "message":"保存成功！"
+    },
+    "clearsuccessfully":{
+        "message":"清除成功！"
+    },
+    "clearallrecords":{
+        "message":"是否确认清除所有记录？"
     }
 }
