@@ -67,5 +67,11 @@
     },
     "clearallrecords":{
         "message":"是否确认清除所有记录？"
+    },
+    "nohistory":{
+        "message":"暂无记录"
+    }, 
+     "appdescription":{
+        "message":"记录你使用Chrome时浏览各个网站的时间"
     }
 }

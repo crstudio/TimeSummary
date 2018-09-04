@@ -1225,7 +1225,7 @@
     },
     "12306.cn": {
         "zh_CN": "铁路客户服务中心",
-        "en": ""
+        "en": "12306"
     },
     "yunpian.com": {
         "zh_CN": "云片网",
@@ -1318,7 +1318,11 @@
     "linkedin.com": {
         "zh_CN": "领英",
         "en": "Linkedin"
+    },
+    "lining.com":{
+        "zh_CN": "李宁官方网站",
+        "en": "LiNing"
     }
 };
 
-var repeatSiteUrl = ["ganji.com", "google.com", "jd.com", "zhibo8.cc", "damai.cn", "taobao.com", "tmall.com", "bilibili.com", "youku.com", "pptv.com", "github.com", "hupu.com", "chinaz.com", "youtube.com", "bing.com", "douyu.com", "nike.com", "adidas.com", "xiazaiba.com", "microsoft.com", "zol.com", "panda.tv", "weibo.com", "zuimeia.com", "minapp.com", "laonanren.com", "497.com", "segmentfault.com", "anjuke.com", "douban.com", "ifanr.com", "12306.cn", "3dmgame.com", "flyme.cn", "meituan.com", "nuomi.com"];
+var repeatSiteUrl = ["ganji.com", "google.com", "jd.com", "zhibo8.cc", "damai.cn", "taobao.com", "tmall.com", "bilibili.com", "youku.com", "pptv.com", "github.com", "hupu.com", "chinaz.com", "youtube.com", "bing.com", "douyu.com", "nike.com", "adidas.com", "xiazaiba.com", "microsoft.com", "zol.com", "panda.tv", "weibo.com", "zuimeia.com", "minapp.com", "laonanren.com", "497.com", "segmentfault.com", "anjuke.com", "douban.com", "ifanr.com", "12306.cn", "3dmgame.com", "flyme.cn", "meituan.com", "nuomi.com","lining.com"];

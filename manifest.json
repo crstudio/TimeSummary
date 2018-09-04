@@ -6,7 +6,7 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "description": "记录你使用Chrome时浏览各个网站的时间",
+  "description": "__MSG_appdescription__",
   "icons": {
     "48": "images/icon_48.png",
     "128": "images/icon_128.png"
@@ -15,7 +15,7 @@
   "name": "__MSG_appname__",
   "options_page": "options.html",
   "permissions": [ "tabs", "activeTab", "notifications" ],
-  "version": "3.1.0",
+  "version": "3.1.1",
   "offline_enabled": true,
   "short_name": "Timeviewer",
   "default_locale": "en"

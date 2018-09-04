@@ -67,5 +67,11 @@
     },
     "clearallrecords":{
         "message":"Clear all records?"
+    },
+    "nohistory":{
+        "message":"No Data"
+    },
+    "appdescription":{
+        "message":"Record the time of browsing the websites when you use Chrome."
     }
 }

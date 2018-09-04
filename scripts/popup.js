@@ -26,7 +26,7 @@
 
 var popup = {
     isToday: true, //展示类型 true：今天、false：总共
-    init: function () { 
+    init: function () {
         if (tsCommonJS.getLocalText("appname") === "时间脚印") {
             $("#title").addClass("title_zh");
         } else {
@@ -83,7 +83,7 @@ var popup = {
         detailJson = this.isToday ? detailJson.site : detailJson;
         detailJson = tsCommonJS.jsonSort(detailJson, 'timevalue', true); //排序
         if (detailJson.length === 0) {
-            $("#" + nameDetailHtml).append('<div class="nohistory">暂无记录</div>');
+            $("#" + nameDetailHtml).append('<div class="nohistory">' + tsCommonJS.getLocalText('nohistory') + '</div>');
             return;
         }
         showNum = showNum < detailJson.length ? showNum : detailJson.length;
